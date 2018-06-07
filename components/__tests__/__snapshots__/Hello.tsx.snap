@@ -12,6 +12,7 @@ exports[`renders correctly with defaults 1`] = `
   <Text
     accessible={true}
     allowFontScaling={true}
+    data-test="header"
     ellipsizeMode="tail"
     style={
       Object {
@@ -21,7 +22,7 @@ exports[`renders correctly with defaults 1`] = `
     }
   >
     Hello 
-    World!
+    World!!
   </Text>
   <View
     style={

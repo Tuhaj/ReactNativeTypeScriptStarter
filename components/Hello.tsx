@@ -32,7 +32,7 @@ export class Hello extends React.Component<Props, State> {
     render() {
         return (
             <View style={styles.root}>
-                <Text style={styles.greeting}>
+                <Text style={styles.greeting}  data-test='header' >
                     Hello {this.props.name + this.getExclamationMarks(this.state.enthusiasmLevel)}
                 </Text>
 
