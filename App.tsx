@@ -18,7 +18,7 @@ export default class App extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <Hello enthusiasmLevel={4} />
+        <Hello name="Piotr" enthusiasmLevel={4} />
       </View>
     );
   }
