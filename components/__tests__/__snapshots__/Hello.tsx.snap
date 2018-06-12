@@ -21,8 +21,7 @@ exports[`renders correctly with defaults 1`] = `
       }
     }
   >
-    Hello 
-    World!!
+    Hello World!!
   </Text>
   <View
     style={

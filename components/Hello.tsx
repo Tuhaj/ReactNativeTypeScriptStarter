@@ -12,7 +12,7 @@ interface State {
     enthusiasmLevel: number
 }
 
-export class Hello extends React.Component<Props, State> {
+export default class Hello extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props)
 
@@ -33,7 +33,7 @@ export class Hello extends React.Component<Props, State> {
         return (
             <View style={styles.root}>
                 <Text style={styles.greeting}  data-test='header' >
-                    Hello {this.props.name + this.getExclamationMarks(this.state.enthusiasmLevel)}
+                    {'Hello ' + this.props.name + this.getExclamationMarks(this.state.enthusiasmLevel)}
                 </Text>
 
                 <View style={styles.buttons}>
@@ -59,8 +59,6 @@ export class Hello extends React.Component<Props, State> {
         )
     }
 }
-
-// styles
 
 const styles = StyleSheet.create({
     root: {
