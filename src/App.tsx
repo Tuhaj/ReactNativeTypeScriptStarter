@@ -1,25 +1,23 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React from 'react';
 import { Component } from 'react';
 import Hello from './containers/Hello';
+import { configureStore } from './configureStore';
 
 import {
   StyleSheet,
   View
 } from 'react-native';
+import {Provider} from "react-redux";
 
 type Props = {};
 export default class App extends Component<Props> {
   render() {
     return (
-      <View style={styles.container}>
-        <Hello enthusiasmLevel={4} name="Piotr" />
-      </View>
+        <Provider store={ configureStore() }>
+          <View style={styles.container}>
+            <Hello />
+          </View>
+        </Provider>
     );
   }
 }
