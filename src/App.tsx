@@ -6,7 +6,7 @@
 
 import React from 'react';
 import { Component } from 'react';
-import Hello from './components/Hello';
+import Hello from './containers/Hello';
 
 import {
   StyleSheet,
@@ -18,7 +18,7 @@ export default class App extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <Hello name="Piotr" enthusiasmLevel={4} />
+        <Hello enthusiasmLevel={4} name="Piotr" />
       </View>
     );
   }

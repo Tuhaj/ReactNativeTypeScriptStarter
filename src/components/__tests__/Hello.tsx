@@ -14,3 +14,9 @@ it('renders the correct text when no enthusiasm level is given', () => {
     expect(wrapper.find('Text').length).toEqual(1);
     expect(wrapper.find(Text).children().text()).toEqual('Hello Piotr!!')
 });
+
+it('throws when the enthusiasm level is 0', () => {
+    expect(() => {
+        shallow(<Hello name='Daniel' enthusiasmLevel={0} />);
+    }).toThrow();
+});
