@@ -1,7 +1,7 @@
 import React from 'react';
 import { Component } from 'react';
 import Hello from './containers/Hello';
-import { configureStore } from './configureStore';
+import configuredStore from './configuredStore';
 
 import {
   StyleSheet,
@@ -13,7 +13,7 @@ type Props = {};
 export default class App extends Component<Props> {
   render() {
     return (
-        <Provider store={ configureStore() }>
+        <Provider store={ configuredStore }>
           <View style={styles.container}>
             <Hello />
           </View>
