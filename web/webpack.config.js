@@ -1,75 +1,88 @@
-const path = require('path');
-const webpack = require('webpack');
+/* eslint-disable */
+const enableOfflinePlugin = false
 
-const appDirectory = path.resolve(__dirname, '../');
+const __DEV__ = process.env.NODE_ENV === 'development'
+const __OFFLINE__ = enableOfflinePlugin && !__DEV__
 
-// This is needed for webpack to compile JavaScript.
-// Many OSS React Native packages are not compiled to ES5 before being
-// published. If you depend on uncompiled packages they may cause webpack build
-// errors. To fix this webpack can be configured to compile to the necessary
-// `node_module`.
-const babelLoaderConfiguration = {
-    test: /\.js$/,
-    // Add every directory that needs to be compiled by Babel during the build.
-    include: [
-        path.resolve(appDirectory, 'index.web.js'),
-        path.resolve(appDirectory, 'src'),
-        path.resolve(appDirectory, 'node_modules/react-native-uncompiled')
-    ],
-    use: {
-        loader: 'babel-loader',
-        options: {
-            cacheDirectory: true,
-            // The 'react-native' preset is recommended to match React Native's packager
-            presets: ['react-native'],
-            // Re-write paths to import only the modules needed by the app
-            plugins: ['react-native-web']
-        }
-    }
-};
+const path = require('path')
+const glob = require('glob')
+const webpack = require('webpack')
+const config = require('./shared.webpack.config.js')
 
-// This is needed for webpack to import static images in JavaScript files.
-const imageLoaderConfiguration = {
-    test: /\.(gif|jpe?g|png|svg)$/,
-    use: {
-        loader: 'url-loader',
-        options: {
-            name: '[name].[ext]'
-        }
-    }
-};
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin')
+
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const OfflinePlugin = require('offline-plugin')
+
+const vendorConfig = require('./vendor.webpack.config.js')
+const outputPath = path.join(__dirname, '/build/')
+
+
+const addAssetHtmlFiles = Object.keys(vendorConfig.entry).map((name) => {
+  const fileGlob = `${name}*.dll.js`
+  const paths = glob.sync(path.join(vendorConfig.output.path, fileGlob))
+  if (paths.length === 0) throw new Error(`Could not find ${fileGlob}!`)
+  if (paths.length > 1) throw new Error(`Too many files for ${fileGlob}! You should clean and rebuild.`)
+  return {
+    filepath: require.resolve(paths[0]),
+    includeSourcemap: false,
+    outputPath: 'javascript/vendor',
+    publicPath: '/javascript/vendor',
+  }
+})
+
+const plugins = [
+  ...Object.keys(vendorConfig.entry).map(name =>
+    new webpack.DllReferencePlugin({
+      context: process.cwd(),
+      manifest: require(path.join(vendorConfig.output.path, `${name}-manifest.json`)),
+    })),
+
+  new webpack.DefinePlugin({
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+    __DEV__,
+    __OFFLINE__,
+  }),
+  new HtmlWebpackPlugin({
+    filename: 'index.html',
+    template: 'web/templates/index.ejs',
+  }),
+  new AddAssetHtmlPlugin(addAssetHtmlFiles),
+
+  new CopyWebpackPlugin([
+    // Workaround for AddAssetHtmlPlugin not copying compressed .gz files
+    { context: 'web/vendor/', from: '*.js.gz', to: 'javascript/vendor/' },
+  ]),
+
+  // Split out any remaining node modules
+  ...(__DEV__ ? [] : [
+    ...config.productionPlugins,
+
+    // Add any app-specific production plugins here.
+  ])
+]
+
+// If offline plugin is enabled, it has to come last.
+if (__OFFLINE__) plugins.push(new OfflinePlugin())
 
 module.exports = {
-    entry: [
-        // load any web API polyfills
-        // path.resolve(appDirectory, 'polyfills-web.js'),
-        // your web-specific entry file
-        path.resolve(appDirectory, 'index.web.js')
-    ],
-
-    // configures where the build ends up
-    output: {
-        filename: 'bundle.web.js',
-        path: path.resolve(appDirectory, 'dist')
+  devServer: {
+    contentBase: outputPath,
+  },
+  entry: {
+    app: path.join(__dirname, '../index.web.js')
+  },
+  output: {
+    path: outputPath,
+    filename: 'javascript/[name]-[hash:16].js',
+    publicPath: '/'
+  },
+  plugins: plugins,
+  resolve: {
+    alias: {
+      'react-native': 'react-native-web'
     },
-
-    // ...the rest of your config
-
-    module: {
-        rules: [
-            babelLoaderConfiguration,
-            imageLoaderConfiguration
-        ]
-    },
-
-    resolve: {
-        // This will only alias the exact import "react-native"
-        alias: {
-            'react-native$': 'react-native-web'
-        },
-        // If you're working on a multi-platform React Native app, web-specific
-        // module implementations should be written in files using the extension
-        // `.web.js`.
-        extensions: [ '.web.js', '.js' ]
-    }
-}
+    extensions: [".web.js", ".js", ".json"]
+  }
+};

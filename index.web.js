@@ -7,5 +7,5 @@ AppRegistry.registerComponent('ReactNativeTypeScriptStarter', () => App);
 
 AppRegistry.runApplication('ReactNativeTypeScriptStarter', {
     initialProps: {},
-    rootTag: document.getElementById('root')
+    rootTag: document.getElementById('react-root')
 });
