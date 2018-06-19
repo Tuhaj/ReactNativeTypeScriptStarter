@@ -1,7 +1,6 @@
 import React from 'react';
-import { Component } from 'react';
 import Hello from './containers/Hello';
-import configuredStore from './configuredStore';
+import { configureStore } from './configureStore';
 
 import {
   StyleSheet,
@@ -9,11 +8,14 @@ import {
 } from 'react-native';
 import {Provider} from "react-redux";
 
-type Props = {};
-export default class App extends Component<Props> {
+interface Props {
+    configureStore: () => void
+};
+
+export default class App extends React.Component<Props> {
   render() {
     return (
-        <Provider store={ configuredStore }>
+        <Provider store={ configureStore() }>
           <View style={styles.container}>
             <Hello />
           </View>
