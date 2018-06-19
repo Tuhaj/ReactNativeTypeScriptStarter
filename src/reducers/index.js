@@ -11,7 +11,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var index_1 = require("../shared/constants/index");
 var initialState = {
     name: 'React Native + Web Starter',
-    enthusiasmLevel: 0
+    enthusiasmLevel: 1
 };
 function enthusiasm(state, action) {
     if (state === void 0) { state = initialState; }

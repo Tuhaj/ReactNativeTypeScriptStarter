@@ -4,7 +4,7 @@ import { INCREMENT_ENTHUSIASM, DECREMENT_ENTHUSIASM } from '../shared/constants/
 
 const initialState : StoreState = {
     name: 'React Native + Web Starter',
-    enthusiasmLevel: 0
+    enthusiasmLevel: 1
 };
 
 export function enthusiasm(state: StoreState = initialState, action: EnthusiasmAction): StoreState {
