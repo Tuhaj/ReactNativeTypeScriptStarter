@@ -4,11 +4,14 @@ import { Button, StyleSheet, Text, View } from "react-native"
 export interface Props {
     name: string;
     enthusiasmLevel?: number;
-    onIncrement?: () => void;
-    onDecrement?: () => void;
+    onIncrement?: () => any;
+    onDecrement?: () => any;
 }
 
 const Hello = ({name, enthusiasmLevel = 1, onIncrement, onDecrement}: Props) => {
+    console.log('🦑 onIncrement ', onIncrement);
+    console.log('🦑 onDecrement ', onDecrement);
+
     if ((enthusiasmLevel || 0) <= 0) {
         throw new Error("You could be a little more enthusiastic. :D");
     }
