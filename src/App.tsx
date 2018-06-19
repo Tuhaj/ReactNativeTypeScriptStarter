@@ -1,6 +1,6 @@
 import React from 'react';
 import Hello from './containers/Hello';
-import { configureStore } from './configureStore';
+import { configureStoreWeb } from './configureStore.web';
 
 import {
   StyleSheet,
@@ -15,7 +15,7 @@ interface Props {
 export default class App extends React.Component<Props> {
   render() {
     return (
-        <Provider store={ configureStore() }>
+        <Provider store={ configureStoreWeb() }>
           <View style={styles.container}>
             <Hello />
           </View>

@@ -1,19 +1,14 @@
-import Reactotron, { trackGlobalErrors } from 'reactotron-react-native';
-import { reactotronRedux } from 'reactotron-redux';
+import Reactotron from 'reactotron-react-native';
 import {applyMiddleware, createStore} from 'redux';
 import { enthusiasm } from './reducers';
 import './ReactotronConfig';
+import {Platform} from "react-native";
 
-const initialState = {
-    enthusiasmLevel: 1,
-    name: 'React Native and Web!',
-};
+export const configureStoreWeb = () => {
 
-export const configureStore = () => {
-
-  if (__DEV__) {
-      return Reactotron.createStore(enthusiasm, initialState, applyMiddleware())
+  if (__DEV__ && Platform.OS !== 'web') {
+      return Reactotron.createStore(enthusiasm, applyMiddleware())
   } else {
-    return createStore(enthusiasm, initialState)
+    return createStore(enthusiasm)
   }
 }

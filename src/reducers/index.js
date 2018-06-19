@@ -9,7 +9,12 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var index_1 = require("../shared/constants/index");
+var initialState = {
+    name: 'React Native + Web Starter',
+    enthusiasmLevel: 0
+};
 function enthusiasm(state, action) {
+    if (state === void 0) { state = initialState; }
     switch (action.type) {
         case index_1.INCREMENT_ENTHUSIASM:
             return __assign({}, state, { enthusiasmLevel: state.enthusiasmLevel + 1 });
