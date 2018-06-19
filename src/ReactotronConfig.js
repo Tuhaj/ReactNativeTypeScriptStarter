@@ -1,6 +1,8 @@
-import Reactotron from 'reactotron-react-native'
+import Reactotron, { trackGlobalErrors } from 'reactotron-react-native';
+import { reactotronRedux } from 'reactotron-redux';
 
 Reactotron
-  .configure() // controls connection & communication settings
-  .useReactNative() // add all built-in react native plugins
-  .connect() // let's connect!
+  .configure({name: 'React Native + Web Starter'})
+  .use(reactotronRedux())
+  .use(trackGlobalErrors())
+  .connect(); // let's connect!
