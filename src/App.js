@@ -15,7 +15,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importDefault(require("react"));
 var Hello_1 = __importDefault(require("./containers/Hello"));
-var configureStore_web_1 = require("./configureStore.web");
+var configureStore_1 = require("./configureStore");
 var react_native_1 = require("react-native");
 var react_redux_1 = require("react-redux");
 ;
@@ -25,7 +25,7 @@ var App = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     App.prototype.render = function () {
-        return (react_1.default.createElement(react_redux_1.Provider, { store: configureStore_web_1.configureStoreWeb() },
+        return (react_1.default.createElement(react_redux_1.Provider, { store: configureStore_1.configureStore() },
             react_1.default.createElement(react_native_1.View, { style: styles.container },
                 react_1.default.createElement(Hello_1.default, null))));
     };
