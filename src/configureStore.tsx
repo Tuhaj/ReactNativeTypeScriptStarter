@@ -1,12 +1,12 @@
 import Reactotron, { trackGlobalErrors } from 'reactotron-react-native';
 import { reactotronRedux } from 'reactotron-redux';
-import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
+import {applyMiddleware, createStore} from 'redux';
 import { enthusiasm } from './reducers';
 import './ReactotronConfig';
 
 const initialState = {
     enthusiasmLevel: 1,
-    name: 'Piotr Zientara',
+    name: 'React Native and Web!',
 };
 
 export const configureStore = () => {
