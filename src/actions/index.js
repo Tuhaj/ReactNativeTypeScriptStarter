@@ -7,7 +7,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var constants = __importStar(require("../shared/constants/index"));
+const constants = __importStar(require("../shared/constants/index"));
 function incrementEnthusiasm() {
     return {
         type: constants.INCREMENT_ENTHUSIASM
@@ -20,3 +20,4 @@ function decrementEnthusiasm() {
     };
 }
 exports.decrementEnthusiasm = decrementEnthusiasm;
+//# sourceMappingURL=index.js.map

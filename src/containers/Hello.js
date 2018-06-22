@@ -10,22 +10,22 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var Hello_1 = __importDefault(require("../components/Hello"));
-var actions = __importStar(require("../actions/index"));
-var react_redux_1 = require("react-redux");
-function mapStateToProps(_a) {
-    var enthusiasmLevel = _a.enthusiasmLevel, name = _a.name;
+const Hello_1 = __importDefault(require("../components/Hello"));
+const actions = __importStar(require("../actions/index"));
+const react_redux_1 = require("react-redux");
+function mapStateToProps({ enthusiasmLevel, name }) {
     return {
-        enthusiasmLevel: enthusiasmLevel,
-        name: name,
+        enthusiasmLevel,
+        name,
     };
 }
 exports.mapStateToProps = mapStateToProps;
 function mapDispatchToProps(dispatch) {
     return {
-        onIncrement: function () { return dispatch(actions.incrementEnthusiasm()); },
-        onDecrement: function () { return dispatch(actions.decrementEnthusiasm()); },
+        onIncrement: () => dispatch(actions.incrementEnthusiasm()),
+        onDecrement: () => dispatch(actions.decrementEnthusiasm()),
     };
 }
 exports.mapDispatchToProps = mapDispatchToProps;
 exports.default = react_redux_1.connect(mapStateToProps, mapDispatchToProps)(Hello_1.default);
+//# sourceMappingURL=Hello.js.map
