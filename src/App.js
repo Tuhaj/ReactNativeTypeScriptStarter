@@ -11,11 +11,9 @@ const react_redux_1 = require("react-redux");
 ;
 class App extends react_1.default.Component {
     render() {
-        return (<react_redux_1.Provider store={configureStore_1.configureStore()}>
-          <react_native_1.View style={styles.container}>
-            <Hello_1.default />
-          </react_native_1.View>
-        </react_redux_1.Provider>);
+        return (react_1.default.createElement(react_redux_1.Provider, { store: configureStore_1.configureStore() },
+            react_1.default.createElement(react_native_1.View, { style: styles.container },
+                react_1.default.createElement(Hello_1.default, null))));
     }
 }
 exports.default = App;

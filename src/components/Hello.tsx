@@ -1,5 +1,18 @@
 import React from "react"
 import { Button, StyleSheet, Text, View, Platform } from "react-native"
+import I18n from 'react-native-i18n';
+
+I18n.fallbacks = true;
+
+I18n.translations = {
+    en: {
+        greeting: 'Hello!'
+    },
+    fr: {
+        greeting: 'Bonjour!'
+    }
+
+};
 
 export interface Props {
     name: string;
@@ -18,7 +31,7 @@ const Hello = ({name, enthusiasmLevel = 1, onIncrement, onDecrement}: Props) => 
     return (
         <View style={styles.root}>
             <Text style={styles.greeting}  data-test='header' >
-                {'Hello ' + name + getExclamationMarks(enthusiasmLevel)}
+                {I18n.t('greeting') + ' ' + name + getExclamationMarks(enthusiasmLevel)}
             </Text>
             <Text style={styles.greeting}  data-test='header' >
                 {'Platform: ' + platformText[Platform.OS] }
