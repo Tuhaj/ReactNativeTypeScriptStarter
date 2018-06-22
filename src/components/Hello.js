@@ -9,10 +9,12 @@ const react_native_i18n_1 = __importDefault(require("react-native-i18n"));
 react_native_i18n_1.default.fallbacks = true;
 react_native_i18n_1.default.translations = {
     en: {
-        greeting: 'Hello!'
+        greeting: 'Hello!',
+        test: 'English'
     },
     fr: {
-        greeting: 'Bonjour!'
+        greeting: 'Bonjour!',
+        test: 'French'
     }
 };
 const Hello = ({ name, enthusiasmLevel = 1, onIncrement, onDecrement }) => {
@@ -22,6 +24,9 @@ const Hello = ({ name, enthusiasmLevel = 1, onIncrement, onDecrement }) => {
     const getExclamationMarks = (numChars) => Array(numChars + 1).join("!");
     const platformText = { ios: 'iOS', android: 'Android', web: 'Web' };
     return (react_1.default.createElement(react_native_1.View, { style: styles.root },
+        react_1.default.createElement(react_native_1.Text, null,
+            "Hodorio: ",
+            react_native_i18n_1.default.t('test')),
         react_1.default.createElement(react_native_1.Text, { style: styles.greeting, "data-test": 'header' }, react_native_i18n_1.default.t('greeting') + ' ' + name + getExclamationMarks(enthusiasmLevel)),
         react_1.default.createElement(react_native_1.Text, { style: styles.greeting, "data-test": 'header' }, 'Platform: ' + platformText[react_native_1.Platform.OS]),
         react_1.default.createElement(react_native_1.View, { style: styles.buttons },

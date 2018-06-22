@@ -6,12 +6,13 @@ I18n.fallbacks = true;
 
 I18n.translations = {
     en: {
-        greeting: 'Hello!'
+        greeting: 'Hello!',
+        test: 'English'
     },
     fr: {
-        greeting: 'Bonjour!'
+        greeting: 'Bonjour!',
+        test: 'French'
     }
-
 };
 
 export interface Props {
@@ -30,6 +31,7 @@ const Hello = ({name, enthusiasmLevel = 1, onIncrement, onDecrement}: Props) => 
 
     return (
         <View style={styles.root}>
+            <Text>Hodorio: { I18n.t('test') }</Text>
             <Text style={styles.greeting}  data-test='header' >
                 {I18n.t('greeting') + ' ' + name + getExclamationMarks(enthusiasmLevel)}
             </Text>
