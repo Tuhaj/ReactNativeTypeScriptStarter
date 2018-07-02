@@ -1,5 +1,5 @@
 import React from "react"
-import { Button, StyleSheet, Text, View, Platform } from "react-native"
+import {Button, StyleSheet, Text, View, Platform, PlatformOSType} from "react-native"
 import I18n from 'react-native-i18n';
 
 I18n.fallbacks = true;
@@ -28,7 +28,7 @@ const Hello = ({name, enthusiasmLevel = 1, onIncrement, onDecrement}: Props) => 
         error = 'You could be a little more enthusiastic. :D';
     }
     const getExclamationMarks  = '!'.repeat(enthusiasmLevel);
-    const platformText = {ios: 'iOS', android: 'Android', web: 'Web' };
+    const platformText = {ios: 'iOS', android: 'Android', web: 'Web', macos: 'MacOS', windows: 'Windows' };
 
     return (
         <View style={styles.root}>

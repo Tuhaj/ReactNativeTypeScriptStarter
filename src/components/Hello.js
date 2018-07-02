@@ -23,7 +23,7 @@ const Hello = ({ name, enthusiasmLevel = 1, onIncrement, onDecrement }) => {
         error = 'You could be a little more enthusiastic. :D';
     }
     const getExclamationMarks = '!'.repeat(enthusiasmLevel);
-    const platformText = { ios: 'iOS', android: 'Android', web: 'Web' };
+    const platformText = { ios: 'iOS', android: 'Android', web: 'Web', macos: 'MacOS', windows: 'Windows' };
     return (react_1.default.createElement(react_native_1.View, { style: styles.root },
         react_1.default.createElement(react_native_1.Text, { testID: 'enthusiasm-level' },
             "Hodorio: ",
