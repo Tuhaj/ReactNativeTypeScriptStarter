@@ -12,6 +12,29 @@ exports[`renders correctly with defaults 1`] = `
   <Text
     accessible={true}
     allowFontScaling={true}
+    ellipsizeMode="tail"
+    testID="enthusiasm-level"
+  >
+    Hodorio: 
+    English
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "color": "#999",
+        "fontWeight": "bold",
+      }
+    }
+    testID="hello"
+  >
+    Hello World!!
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
     data-test="header"
     ellipsizeMode="tail"
     style={
@@ -21,7 +44,7 @@ exports[`renders correctly with defaults 1`] = `
       }
     }
   >
-    Hello World!!
+    Platform: iOS
   </Text>
   <View
     style={

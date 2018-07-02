@@ -9,7 +9,7 @@ const react_native_i18n_1 = __importDefault(require("react-native-i18n"));
 react_native_i18n_1.default.fallbacks = true;
 react_native_i18n_1.default.translations = {
     en: {
-        greeting: 'Hello!',
+        greeting: 'Hello',
         test: 'English'
     },
     fr: {
@@ -18,16 +18,18 @@ react_native_i18n_1.default.translations = {
     }
 };
 const Hello = ({ name, enthusiasmLevel = 1, onIncrement, onDecrement }) => {
+    let error = null;
     if ((enthusiasmLevel || 0) <= 0) {
-        throw new Error("You could be a little more enthusiastic. :D");
+        error = 'You could be a little more enthusiastic. :D';
     }
-    const getExclamationMarks = (numChars) => Array(numChars + 1).join("!");
+    const getExclamationMarks = '!'.repeat(enthusiasmLevel);
     const platformText = { ios: 'iOS', android: 'Android', web: 'Web' };
     return (react_1.default.createElement(react_native_1.View, { style: styles.root },
-        react_1.default.createElement(react_native_1.Text, null,
+        react_1.default.createElement(react_native_1.Text, { testID: 'enthusiasm-level' },
             "Hodorio: ",
             react_native_i18n_1.default.t('test')),
-        react_1.default.createElement(react_native_1.Text, { style: styles.greeting, "data-test": 'header' }, react_native_i18n_1.default.t('greeting') + ' ' + name + getExclamationMarks(enthusiasmLevel)),
+        error ? react_1.default.createElement(react_native_1.Text, { testID: 'error' }, error) : null,
+        react_1.default.createElement(react_native_1.Text, { testID: 'hello', style: styles.greeting }, react_native_i18n_1.default.t('greeting') + ' ' + name + getExclamationMarks),
         react_1.default.createElement(react_native_1.Text, { style: styles.greeting, "data-test": 'header' }, 'Platform: ' + platformText[react_native_1.Platform.OS]),
         react_1.default.createElement(react_native_1.View, { style: styles.buttons },
             react_1.default.createElement(react_native_1.View, { style: styles.button },

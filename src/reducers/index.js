@@ -10,7 +10,7 @@ function enthusiasm(state = initialState, action) {
         case index_1.INCREMENT_ENTHUSIASM:
             return Object.assign({}, state, { enthusiasmLevel: state.enthusiasmLevel + 1 });
         case index_1.DECREMENT_ENTHUSIASM:
-            return Object.assign({}, state, { enthusiasmLevel: Math.max(1, state.enthusiasmLevel - 1) });
+            return Object.assign({}, state, { enthusiasmLevel: Math.max(0, state.enthusiasmLevel - 1) });
     }
     return state;
 }

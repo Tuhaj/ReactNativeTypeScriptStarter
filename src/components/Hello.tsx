@@ -6,7 +6,7 @@ I18n.fallbacks = true;
 
 I18n.translations = {
     en: {
-        greeting: 'Hello!',
+        greeting: 'Hello',
         test: 'English'
     },
     fr: {
@@ -23,17 +23,19 @@ export interface Props {
 }
 
 const Hello = ({name, enthusiasmLevel = 1, onIncrement, onDecrement}: Props) => {
+    let error = null;
     if ((enthusiasmLevel || 0) <= 0) {
-        throw new Error("You could be a little more enthusiastic. :D");
+        error = 'You could be a little more enthusiastic. :D';
     }
-    const getExclamationMarks = (numChars: number) => Array(numChars + 1).join("!");
+    const getExclamationMarks  = '!'.repeat(enthusiasmLevel);
     const platformText = {ios: 'iOS', android: 'Android', web: 'Web' };
 
     return (
         <View style={styles.root}>
-            <Text>Hodorio: { I18n.t('test') }</Text>
-            <Text style={styles.greeting}  data-test='header' >
-                {I18n.t('greeting') + ' ' + name + getExclamationMarks(enthusiasmLevel)}
+            <Text testID='enthusiasm-level'>Hodorio: { I18n.t('test') }</Text>
+            { error ? <Text testID='error'>{error}</Text> : null }
+            <Text testID='hello' style={styles.greeting}>
+                {I18n.t('greeting') + ' ' + name + getExclamationMarks}
             </Text>
             <Text style={styles.greeting}  data-test='header' >
                 {'Platform: ' + platformText[Platform.OS] }
