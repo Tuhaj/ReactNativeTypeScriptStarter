@@ -5,26 +5,26 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(require("react"));
 const react_native_1 = require("react-native");
-const mobile_1 = __importDefault(require("../i18n/mobile"));
+const web_1 = __importDefault(require("../i18n/web"));
 const constants_1 = require("../constants");
 const Hello = ({ name, enthusiasmLevel = 1, onIncrement, onDecrement }) => {
     let error = null;
     if ((enthusiasmLevel || 0) <= 0) {
-        error = mobile_1.default.t('errorText');
+        error = web_1.default.t('errorText');
     }
     const getExclamationMarks = '!'.repeat(enthusiasmLevel);
     return (react_1.default.createElement(react_native_1.View, { style: styles.root },
         react_1.default.createElement(react_native_1.Text, { testID: 'enthusiasm-level' },
-            "Hodorio: ",
-            mobile_1.default.t('test')),
+            "Web: ",
+            web_1.default.t('test')),
         error ? react_1.default.createElement(react_native_1.Text, { testID: 'error' }, error) : null,
-        react_1.default.createElement(react_native_1.Text, { testID: 'hello', style: styles.greeting }, mobile_1.default.t('greeting') + ' ' + name + getExclamationMarks),
+        react_1.default.createElement(react_native_1.Text, { testID: 'hello', style: styles.greeting }, web_1.default.t('greeting') + ' ' + name + getExclamationMarks),
         react_1.default.createElement(react_native_1.Text, { style: styles.greeting, "data-test": 'header' }, 'Platform: ' + constants_1.platformText[react_native_1.Platform.OS]),
         react_1.default.createElement(react_native_1.View, { style: styles.buttons },
             react_1.default.createElement(react_native_1.View, { style: styles.button },
-                react_1.default.createElement(react_native_1.Button, { title: "-", onPress: onDecrement, accessibilityLabel: "decrement", color: "red" })),
+                react_1.default.createElement(react_native_1.Button, { title: "-", onPress: onDecrement, accessibilityLabel: "decrement", color: "#3355ee" })),
             react_1.default.createElement(react_native_1.View, { style: styles.button },
-                react_1.default.createElement(react_native_1.Button, { title: "+", onPress: onIncrement, accessibilityLabel: "increment", color: "blue" })))));
+                react_1.default.createElement(react_native_1.Button, { title: "+", onPress: onIncrement, accessibilityLabel: "increment", color: "#dd5599" })))));
 };
 const styles = react_native_1.StyleSheet.create({
     root: {
@@ -48,4 +48,4 @@ const styles = react_native_1.StyleSheet.create({
     }
 });
 exports.default = Hello;
-//# sourceMappingURL=Hello.js.map
+//# sourceMappingURL=Hello.web.js.map

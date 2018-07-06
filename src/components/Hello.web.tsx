@@ -1,8 +1,8 @@
 import React from "react";
 import {Button, StyleSheet, Text, View, Platform} from "react-native";
 
-import I18n from '../i18n/mobile';
 import {HelloComopnentProps} from "../types";
+import I18n from '../i18n/web';
 import {platformText} from "../constants";
 
 const Hello = ({name, enthusiasmLevel = 1, onIncrement, onDecrement}: HelloComopnentProps) => {
@@ -14,7 +14,7 @@ const Hello = ({name, enthusiasmLevel = 1, onIncrement, onDecrement}: HelloComop
 
     return (
         <View style={styles.root}>
-            <Text testID='enthusiasm-level'>Hodorio: { I18n.t('test') }</Text>
+            <Text testID='enthusiasm-level'>Web: { I18n.t('test') }</Text>
             { error ? <Text testID='error'>{error}</Text> : null }
             <Text testID='hello' style={styles.greeting}>
                 {I18n.t('greeting') + ' ' + name + getExclamationMarks}
@@ -28,7 +28,7 @@ const Hello = ({name, enthusiasmLevel = 1, onIncrement, onDecrement}: HelloComop
                         title="-"
                         onPress={onDecrement}
                         accessibilityLabel="decrement"
-                        color="red"
+                        color="#3355ee"
                     />
                 </View>
 
@@ -37,7 +37,7 @@ const Hello = ({name, enthusiasmLevel = 1, onIncrement, onDecrement}: HelloComop
                         title="+"
                         onPress={onIncrement}
                         accessibilityLabel="increment"
-                        color="blue"
+                        color="#dd5599"
                     />
                 </View>
             </View>
