@@ -1,7 +1,10 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
-import Hello from "../Hello";
+import Hello from "../Hello.web";
+
+// this is a copy from hello.tsx
+// TODO find a way to avoid repeating
 
 const helloProps = {
     onDecrement: jest.fn,
